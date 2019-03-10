@@ -1,5 +1,8 @@
+
 ansible-role-consul
 =========
+
+[![Build Status](https://travis-ci.org/alvarobacelar/ansible-role-consul.svg?branch=master)](https://travis-ci.org/alvarobacelar/ansible-role-consul)
 
 Role de instalação e configuração do consul e consul-template.
 
