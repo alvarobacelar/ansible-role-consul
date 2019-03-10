@@ -1,27 +1,26 @@
+---
+
 - set_fact:
     bin_consul: '{{ path_consul }}/consul_v1.2.2'
     bin_consul_cons: '{{ path_consul }}/consul'
     bin_consul_sys: '/usr/local/bin/consul'
     path_consul_json: '{{ path_consul }}/config/config.json'
 
-- name: garantinho que o path do consul seja criado 
+- name: garantinho que o path do consul seja criado
   file:
     path: '{{ path_consul }}'
     state: directory
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
 - name: descompactando o arquivo consul
   unarchive:
-    src: '{{ _link_consul }}' 
+    src: '{{ _link_consul }}'
     dest: '{{ path_consul }}/'
-    creates: '{{ bin_consul }}'
     owner: '{{ sys_user }}'
-  become: yes
 
 - file: src={{ bin_consul_cons }} dest={{ bin_consul }}
-  become: yes
+  become: True
 
 - name: criando o link simbolico
   file:
@@ -32,7 +31,6 @@
   with_items:
     - '{{ bin_consul_cons }}'
     - '{{ bin_consul_sys }}'
-  become: yes
 
 - name: garantindo que o diretorio config e data estejam criados
   file:
@@ -43,7 +41,6 @@
   with_items:
     - '{{ path_consul }}/data'
     - '{{ path_consul }}/config'
-  become: yes
 
 - name: adicionando o arquivo JSON de configuracao
   template:
@@ -51,7 +48,6 @@
     dest: '{{ path_consul_json }}'
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
 - name: adicionando arquivo consul.service
   template:
@@ -59,8 +55,7 @@
     dest: /etc/systemd/system/consul.service
     owner: root
   notify:
-    - habilitando consul 
-  become: yes
+    - habilitando consul
 
 - debug:
     msg: "ANTES DE INICIAR O CONSUL, VERIFIQUE AS CONFIGURAÇÕES EM {{ path_consul_json }}"

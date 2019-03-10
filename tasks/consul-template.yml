@@ -1,3 +1,5 @@
+---
+
 - set_fact:
     bin_consul: '{{ path_consul }}/consul-template_v0.19.5'
     bin_consul_cons: '{{ path_consul }}/consul-template'
@@ -10,7 +12,6 @@
     state: directory
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
 - name: descompactando o pacote do consul
   unarchive:
@@ -18,7 +19,6 @@
     dest: '{{ path_consul }}/'
     creates: '{{ bin_consul }}'
     owner: '{{ sys_user }}'
-  become: yes
 
 - name: criando link simbolico do binario do consul
   file:
@@ -29,7 +29,6 @@
   with_items:
     - '{{ bin_consul_cons }}'
     - '{{ bin_consul_sys }}'
-  become: yes
 
 - name: criando os diretorios de configuracao e data
   file:
@@ -40,7 +39,6 @@
   with_items:
     - '{{ path_consul }}/data'
     - '{{ path_consul }}/config'
-  become: yes
 
 - name: adicionando o arquivo exemplo de configuração do consul
   template:
@@ -48,15 +46,13 @@
     dest: '{{ path_consul_json }}'
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
-- name: adicionando o arquivo location.template do nginx 
+- name: adicionando o arquivo location.template do nginx
   copy:
     src: location.template
     dest: "{{ path_nginx }}{{ path_nginx_config }}/location.template"
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
 - name: adicionando o arquivo upstream.template do nginx
   copy:
@@ -64,7 +60,6 @@
     dest: "{{ path_nginx }}{{ path_nginx_config }}/upstream.template"
     owner: '{{ sys_user }}'
     mode: 0750
-  become: yes
 
 - name: adicionando o arquivo consul-template.service
   template:
@@ -72,8 +67,7 @@
     dest: /etc/systemd/system/consul-template.service
     owner: root
   notify:
-    - habilitando consul-template 
-  become: yes
+    - habilitando consul-template
 
 - debug:
     msg: "ANTES DE INICAR O CONSUL-TEMPLATE, VERIFICE AS CONFIGURAÇÕES DO ARQUIVO {{ path_consul_json }}"
