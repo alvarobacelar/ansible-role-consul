@@ -26,7 +26,7 @@
     owner: '{{ sys_user }}'
     state: link
 
-- name: criando os diretorios de configuracao e data
+- name: garantindo que os diretorios de configuracao e data estejam criados
   file:
     path: '{{ item }}'
     state: directory
@@ -35,6 +35,7 @@
   with_items:
     - '{{ path_consul }}/data'
     - '{{ path_consul }}/config'
+    - '{{ path_nginx }}{{ path_nginx_config }}'
 
 - name: adicionando o arquivo exemplo de configuração do consul
   template:
