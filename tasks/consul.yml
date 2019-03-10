@@ -20,7 +20,6 @@
     owner: '{{ sys_user }}'
 
 - file: src={{ bin_consul_cons }} dest={{ bin_consul }}
-  become: True
 
 - name: criando o link simbolico
   file:

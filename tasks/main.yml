@@ -1,11 +1,11 @@
 ---
 
 - include_tasks: consul.yml
-  become: True
+  become: true
   tags:
     - consul
 
 - include_tasks: consul-template.yml
-  become: True
+  become: true
   tags:
     - consul-template
