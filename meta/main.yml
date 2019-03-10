@@ -8,7 +8,7 @@ galaxy_info:
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:
-    - name: RHEL
+    - name: EL
       versions:
         - 7
   galaxy_tags:
