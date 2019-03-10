@@ -1,8 +1,7 @@
 ---
 
 - set_fact:
-    bin_consul: '{{ path_consul }}/consul_v1.2.2'
-    bin_consul_cons: '{{ path_consul }}/consul'
+    bin_consul: '{{ path_consul }}/consul'
     bin_consul_sys: '/usr/local/bin/consul'
     path_consul_json: '{{ path_consul }}/config/config.json'
 
@@ -20,17 +19,12 @@
     owner: '{{ sys_user }}'
     remote_src: true
 
-- file: src={{ bin_consul_cons }} dest={{ bin_consul }}
-
 - name: criando o link simbolico
   file:
     src: '{{ bin_consul }}'
-    dest: '{{ item }}'
+    dest: '{{ bin_consul_sys }}'
     owner: '{{ sys_user }}'
     state: link
-  with_items:
-    - '{{ bin_consul_cons }}'
-    - '{{ bin_consul_sys }}'
 
 - name: garantindo que o diretorio config e data estejam criados
   file:

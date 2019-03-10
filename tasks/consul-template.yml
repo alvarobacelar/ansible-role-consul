@@ -1,8 +1,7 @@
 ---
 
 - set_fact:
-    bin_consul: '{{ path_consul }}/consul-template_v0.19.5'
-    bin_consul_cons: '{{ path_consul }}/consul-template'
+    bin_consul: '{{ path_consul }}/consul-template'
     bin_consul_sys: '/usr/local/bin/consul-template'
     path_consul_json: '{{ path_consul }}/config/options'
 
@@ -17,19 +16,15 @@
   unarchive:
     src: '{{ _link_consul_template }}'
     dest: '{{ path_consul }}/'
-    creates: '{{ bin_consul }}'
     owner: '{{ sys_user }}'
     remote_src: true
 
 - name: criando link simbolico do binario do consul
   file:
     src: '{{ bin_consul }}'
-    dest: '{{ item }}'
+    dest: '{{ bin_consul_sys }}'
     owner: '{{ sys_user }}'
     state: link
-  with_items:
-    - '{{ bin_consul_cons }}'
-    - '{{ bin_consul_sys }}'
 
 - name: criando os diretorios de configuracao e data
   file:
