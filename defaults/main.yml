@@ -1,0 +1,12 @@
+---
+# defaults file for consul
+path_nginx: /etc/nginx
+path_nginx_config: /conf.d
+sys_user: root
+path_consul: /etc/consul
+name_upstream: upstream
+name_location: location
+consul_port: 8500
+nginx_service_consul: nginx
+
+srv_hostname_consul: []

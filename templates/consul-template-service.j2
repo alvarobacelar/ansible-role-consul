@@ -1,0 +1,18 @@
+[Unit]
+Description=consul template
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+NotifyAccess=all
+EnvironmentFile=-{{ path_consul_json }}
+Environment=GOMAXPROCS=2
+Restart=on-failure
+ExecStart={{ path_consul }}/consul-template $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,9 @@
+---
+
+- include_tasks: consul.yml
+  tags:
+    - consul
+
+- include_tasks: consul-template.yml
+  tags: 
+    - consul-template
