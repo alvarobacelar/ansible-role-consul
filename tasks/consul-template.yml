@@ -19,7 +19,7 @@
     dest: '{{ path_consul }}/'
     creates: '{{ bin_consul }}'
     owner: '{{ sys_user }}'
-    remote_src: yes
+    remote_src: true
 
 - name: criando link simbolico do binario do consul
   file:

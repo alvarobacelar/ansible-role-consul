@@ -18,7 +18,7 @@
     src: '{{ _link_consul }}'
     dest: '{{ path_consul }}/'
     owner: '{{ sys_user }}'
-    remote_src: yes
+    remote_src: true
 
 - file: src={{ bin_consul_cons }} dest={{ bin_consul }}
 
