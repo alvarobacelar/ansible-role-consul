@@ -1,5 +1,9 @@
 ---
 
+- name: get ip
+  shell: hostname -i
+  register: ip_srv_consul
+
 - set_fact:
     bin_consul: '{{ path_consul }}/consul-template'
     bin_consul_sys: '/usr/local/bin/consul-template'

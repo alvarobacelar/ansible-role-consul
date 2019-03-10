@@ -8,5 +8,6 @@ name_upstream: upstream
 name_location: location
 consul_port: 8500
 nginx_service_consul: nginx
+ansible_default_ipv4: 127.0.0.1
 
 srv_hostname_consul: []
