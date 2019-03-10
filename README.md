@@ -1,4 +1,4 @@
-Consul
+ansible-role-consul
 =========
 
 Role de instalação e configuração do consul e consul-template.
