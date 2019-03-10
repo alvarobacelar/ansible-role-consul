@@ -8,7 +8,7 @@ Type=simple
 NotifyAccess=all
 Environment=GOMAXPROCS=2
 Restart=on-failure
-ExecStart={{ bin_consul_cons }} agent -config-dir={{ path_consul }}/config
+ExecStart={{ bin_consul_sys }} agent -config-dir={{ path_consul }}/config
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
