@@ -4,6 +4,7 @@
     bin_consul: '{{ path_consul }}/consul-template'
     bin_consul_sys: '/usr/local/bin/consul-template'
     path_consul_json: '{{ path_consul }}/config/options'
+    ip_consul_local: '{% if ansible_default_ipv4 is defined %} 127.0.0.1 {% else %} {{ ansible_default_ipv4.address }} {% endif %}'
 
 - name: criando diretorio para o consul
   file:
