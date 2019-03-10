@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 driver:
-  name: consul
+  name: docker
 lint:
   name: yamllint
   options:
