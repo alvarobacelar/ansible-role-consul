@@ -20,3 +20,5 @@ galaxy_info:
     - service discovery
     - kv
     - serve
+    - consul
+    - consul-template
