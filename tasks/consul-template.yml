@@ -47,13 +47,17 @@
 
 - name: adicionando o arquivo location.template do nginx
   copy:
-    src: '{{ item.file_src }}'
-    dest: "{{ item.file_dest }}"
+    src: location.template
+    dest: "{{ path_nginx }}{{ path_nginx_config }}/location.template"
     owner: '{{ sys_user }}'
     mode: 0750
-  with_items:
-    - "{ file_src: location.template, file_dest: {{ path_nginx }}{{ path_nginx_config }}/location.template }"
-    - "{ file_src: upstream.template, file_dest: {{ path_nginx }}{{ path_nginx_config }}/upstream.template }"
+
+- name: adicionando o arquivo upstream.template do nginx
+  copy:
+    src: upstream.template
+    dest: "{{ path_nginx }}{{ path_nginx_config }}/upstream.template"
+    owner: '{{ sys_user }}'
+    mode: 0750
 
 - name: alterando o datacenter of files
   replace:
