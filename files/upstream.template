@@ -1,5 +1,5 @@
  {{- range services -}}
-    {{- if in .Tags "you-tag" -}}
+    {{- if in .Tags "youtag" -}}
       {{- $boxes := service .Name }}
         {{- if gt (len $boxes) 0 -}}
   upstream {{.Name | replaceAll "--" "-"}} {
