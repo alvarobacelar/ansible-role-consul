@@ -17,8 +17,8 @@ galaxy_info:
     - containers
     - docker
     - nginx
-    - service discovery
+    - discovery
     - kv
     - serve
     - consul
-    - consul-template
+    - template
