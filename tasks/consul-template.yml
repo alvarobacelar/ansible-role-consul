@@ -1,6 +1,7 @@
 ---
 
-- set_fact:
+- name: setandos as vars
+  set_fact:
     bin_consul: '{{ path_consul }}/consul-template'
     bin_consul_sys: '/usr/local/bin/consul-template'
     path_consul_json: '{{ path_consul }}/config/options'
@@ -66,5 +67,6 @@
   notify:
     - habilitando consul-template
 
-- debug:
+- name: antes de iniciar
+  debug:
     msg: "ANTES DE INICAR O CONSUL-TEMPLATE, VERIFICE AS CONFIGURAÇÕES DO ARQUIVO {{ path_consul_json }}"

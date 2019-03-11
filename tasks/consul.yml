@@ -1,6 +1,7 @@
 ---
 
-- set_fact:
+- name: setando as vars
+  set_fact:
     bin_consul: '{{ path_consul }}/consul'
     bin_consul_sys: '/usr/local/bin/consul'
     path_consul_json: '{{ path_consul }}/config/config.json'
@@ -51,5 +52,6 @@
   notify:
     - habilitando consul
 
-- debug:
+- name: antes de iniciar
+  debug:
     msg: "ANTES DE INICIAR O CONSUL, VERIFIQUE AS CONFIGURAÇÕES EM {{ path_consul_json }}"
