@@ -51,6 +51,7 @@
     dest: "{{ path_nginx }}{{ path_nginx_config }}/location.template"
     owner: '{{ sys_user }}'
     mode: 0750
+  change_when: false
 
 - name: adicionando o arquivo upstream.template do nginx
   copy:
@@ -58,6 +59,7 @@
     dest: "{{ path_nginx }}{{ path_nginx_config }}/upstream.template"
     owner: '{{ sys_user }}'
     mode: 0750
+  change_when: false
 
 - name: alterando o datacenter of files
   replace:
@@ -67,6 +69,7 @@
   with_items:
     - "{{ path_nginx }}{{ path_nginx_config }}/location.template"
     - "{{ path_nginx }}{{ path_nginx_config }}/upstream.template"
+  change_when: false
 
 - name: adicionando o arquivo consul-template.service
   template:
