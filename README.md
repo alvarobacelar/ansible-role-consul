@@ -19,6 +19,7 @@ As variáveis abaixo são os valores defaults, caso haja a necessidade de mudar,
 path_nginx: /etc/nginx
 path_nginx_config: /conf.d
 sys_user: root
+datacenter_consul: 'lab01'
 path_consul: /etc/consul
 name_upstream: upstream
 name_location: location
