@@ -1,0 +1,15 @@
+{
+    "datacenter": "{{ datacenter_consul }}",
+    "data_dir": "{{ path_consul }}/data",
+    "log_level": "INFO",
+    "enable_syslog": true,
+    "disable_update_check": true,
+    "node_name" : "{{ ansible_hostname }}",
+    "bind_addr": "{{ ansible_default_ipv4.address }}",
+    "advertise_addr": "{{ ansible_default_ipv4.address }}",
+    "client_addr": "{{ ansible_default_ipv4.address }}",
+    "ui": true,
+    "server" : true,
+    "bootstrap_expect": 2,
+    "start_join": [{% for host in srv_hostname_consul %} "{{ host }}" {% if not loop.last %} , {% endif %}  {% endfor %}]
+}

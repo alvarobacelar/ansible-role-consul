@@ -1,0 +1,24 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: alvarobacelar
+  description: Consul and Consul Template for Linux.
+  company: "Alvaro's"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - web
+    - system
+    - containers
+    - docker
+    - nginx
+    - discovery
+    - kv
+    - serve
+    - consul
+    - template

@@ -1,0 +1,21 @@
+---
+
+- name: garantindo que o unzip esteja instalado
+  yum:
+    name: unzip
+    state: present
+
+- name: obtendo a lista de pacotes instalado
+  package_facts:
+    manager: auto
+
+- name: setando o pacote docker caso exista
+  set_fact:
+    docker_pkg: "{% if (ansible_facts.packages['docker-ce'] is defined and ansible_facts.packages['docker-ce'] | length > 0)  or (ansible_facts.packages['docker-ce'] is defined and ansible_facts.packages['docker'] | length > 0)  %}true{% else %}false{% endif %}"
+
+- name: copia o arquivo compose file do registrator
+  template:
+    src: registrator-compose.j2
+    dest: '{{ path_consul }}/registrator.yml'
+    owner: '{{ sys_user }}'
+  when: docker_pkg

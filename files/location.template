@@ -1,0 +1,18 @@
+ {{- range services -}}
+    {{- if in .Tags "youtag" -}}  
+      {{- $boxes := service .Name }}
+        {{- if gt (len $boxes) 0 -}}
+
+  location /{{.Name | replaceAll "--" "-"}} {
+    rewrite ^/{{.Name }}/(.*) /$1 break;
+    proxy_redirect / /{{.Name }}/;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://{{.Name }};
+  }
+
+        {{- end -}}
+    {{- end -}}
+  {{- end -}}
+

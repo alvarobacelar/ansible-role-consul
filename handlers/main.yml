@@ -1,0 +1,7 @@
+---
+# handlers file for consul
+- name: habilitando consul
+  systemd: name=consul enabled=yes
+
+- name: habilitando consul-template
+  systemd: name=consul-template enabled=yes

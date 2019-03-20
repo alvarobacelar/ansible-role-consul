@@ -1,0 +1,14 @@
+ {{- range services -}}
+    {{- if in .Tags "youtag" -}}
+      {{- $boxes := service .Name }}
+        {{- if gt (len $boxes) 0 -}}
+  upstream {{.Name | replaceAll "--" "-"}} {
+    least_conn;
+    keepalive 32;
+    {{- range service .Name }}server {{.Address}}:{{.Port}} max_fails=3 fail_timeout=60 weight=1;
+    {{else}} server 127.0.0.1:65535; #force a 502{{ end }}
+  }
+        {{- end -}}
+    {{- end -}}
+ {{- end -}}
+
