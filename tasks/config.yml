@@ -11,8 +11,8 @@
 
 - name: setando o pacote docker caso exista
   set_fact:
-    docker_ce: "{{ ansible_facts.packages['docker-ce'] }}"
-    docker_ee: "{{ ansible_facts.packages['docker'] }}"
+    docker_ce: "{% if ansible_facts.packages['docker-ce'] is defined %}{{ ansible_facts.packages['docker-ce'] }}{% endif %} }}"
+    docker_ee: "{% if ansible_facts.packages['docker'] is defined %} {{ ansible_facts.packages['docker'] }} {% endif %}"
     docker_pkg: "{% if (docker_ce is defined and docker_ce | length > 0) or (docker_ee is defined and docker_ee | length > 0) %}true{% else %}false{% endif %}"
 
 - name: copia o arquivo compose file do registrator
