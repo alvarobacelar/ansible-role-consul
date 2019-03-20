@@ -12,6 +12,7 @@
     - consul
 
 - include: consul-template.yml
+  when: nginx_pkg
   become: true
   tags:
     - consul-template
