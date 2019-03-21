@@ -9,20 +9,20 @@
   package_facts:
     manager: auto
 
-- name: setando o pacote docker caso exista
+- name: setando vars pacote docker e nginx caso exista
   set_fact:
     docker_ce: "{% if ansible_facts.packages['docker-ce'] is defined %}{{ ansible_facts.packages['docker-ce'] }}{% endif %}"
     docker_ee: "{% if ansible_facts.packages['docker'] is defined %} {{ ansible_facts.packages['docker'] }} {% endif %}"
     nginx_ins: "{% if ansible_facts.packages['nginx'] is defined %}{{ ansible_facts.packages['nginx'] }}{% endif %}"
 
-- name: setando os valores de pacotes instalados
-  set_fact: 
+- name: setando vars de pacotes instalados
+  set_fact:
     docker_pkg: "{% if (docker_ce is defined and docker_ce | length > 0) or (docker_ee is defined and docker_ee | length > 0) %}true{% else %}false{% endif %}"
     nginx_pkg: "{% if nginx_ins is defined and nginx_ins | length > 0 %}true{% else %}false{% endif %}"
 
 - name: debug
   debug:
-    msg: "{% if nginx_pkg %}Servidor NGINX: será instalado o consul template{% elif docker_pkg %}Servidor DOCKER: será instalado apenas o consul com o registrator{% else %}Esse servidor não tem instalado o docker nem o nginx{% endif %}"
+    msg: "{% if nginx_pkg %}Srv NGINX: será instalado o consul template{% elif docker_pkg %}Srv DOCKER: será instalado o registrator{% else %}Esse servidor não tem instalado o docker nem o nginx{% endif %}"
 
 - name: copia o arquivo compose file do registrator
   template:
