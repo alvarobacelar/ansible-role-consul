@@ -19,7 +19,6 @@ As variáveis abaixo são os valores defaults, caso haja a necessidade de mudar,
 path_nginx: /etc/nginx
 path_nginx_config: /conf.d
 sys_user: root
-datacenter_consul: 'lab01'
 path_consul: /etc/consul
 name_upstream: upstream
 name_location: location
@@ -29,11 +28,10 @@ nginx_service_consul: nginx
 
 A variável que você terá que informar é na verdade uma array, informando quais serviores farão parte do seu cluster do consul, Ex: 
 ```yml
-srv_hostname_consul:
-  - name: 10.100.20.10
-    delimiter: ,
-  - name: 10.100.20.11
-    delimiter: '' # o ultimo valor tem que está com o delimiter vazio
+datacenter_consul: 'lab01'
+srv_hostname_consul: # coloque aqui os IPs que farão parte do seu cluster
+  - 10.100.20.10
+  - 10.100.20.11
 ```
 
 As variáveis abaixo são valores fixos e só devem mudar caso mude a versão do consul: 

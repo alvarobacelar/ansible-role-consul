@@ -11,5 +11,5 @@
     "ui": true,
     "server" : true,
     "bootstrap_expect": 2,
-    "start_join": [{% for host in srv_hostname_consul %} "{{ host.name }}" {{ host.demiliter }} {% endfor %}]
+    "start_join": [{% for host in srv_hostname_consul %} "{{ host }}" {% if not loop.last %} , {% endif %}  {% endfor %}]
 }
