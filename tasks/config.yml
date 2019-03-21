@@ -22,7 +22,7 @@
 
 - name: debug
   debug:
-    msg: "{% if nginx_pkg %}Srv NGINX: será instalado o consul template{% elif docker_pkg %}Srv DOCKER: será instalado o registrator{% else %}Esse servidor não tem instalado o docker nem o nginx{% endif %}"
+    msg: "{% if nginx_pkg %}Srv NGINX: instalando consul template{% elif docker_pkg %}Srv DOCKER: instalando registrator{% else %}Não há docker nem o nginx nesse srv{% endif %}"
 
 - name: copia o arquivo compose file do registrator
   template:
