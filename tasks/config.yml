@@ -23,3 +23,8 @@
 - name: debug
   debug:
     msg: "{% if nginx_pkg %}Srv NGINX: instalando consul template{% elif docker_pkg %}Srv DOCKER: instalando registrator{% endif %}"
+
+- name: garantindo que o selinux esteja desativado
+  selinux:
+    policy: targeted
+    state: disabled
