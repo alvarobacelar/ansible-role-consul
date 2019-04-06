@@ -10,6 +10,6 @@
     "client_addr": "{{ ansible_default_ipv4.address }}",
     "ui": true,
     "server" : true,
-    "bootstrap_expect": 2,
+    "bootstrap_expect": {{ srv_hostname_consul|length }},
     "start_join": [{% for host in srv_hostname_consul %} "{{ host }}" {% if not loop.last %} , {% endif %}  {% endfor %}]
 }
