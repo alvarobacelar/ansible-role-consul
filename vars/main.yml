@@ -1,4 +1,4 @@
 ---
 # vars file for consul
-_link_consul: https://releases.hashicorp.com/consul/1.2.2/consul_1.2.2_linux_amd64.zip
-_link_consul_template: https://releases.hashicorp.com/consul-template/0.19.5/consul-template_0.19.5_linux_amd64.tgz
+_link_consul: https://releases.hashicorp.com/consul/1.4.4/consul_1.4.4_linux_amd64.zip
+_link_consul_template: https://releases.hashicorp.com/consul-template/0.20.0/consul-template_0.20.0_linux_amd64.tgz
