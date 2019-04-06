@@ -23,4 +23,3 @@
 - name: debug
   debug:
     msg: "{% if nginx_pkg %}Srv NGINX: instalando consul template{% elif docker_pkg %}Srv DOCKER: instalando registrator{% endif %}"
-
