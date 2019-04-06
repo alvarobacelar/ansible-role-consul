@@ -6,4 +6,4 @@ services:
      mem_limit: 512MB
      command: "-cleanup -tags {{ datacenter_consul }} -ip {{ ansible_default_ipv4.address }} consul://{{ ansible_default_ipv4.address }}:{{ consul_port }}"
      volumes:
-       - /var/lib/docker.sock:/tmp/docker.sock
+       - /var/run/docker.sock:/tmp/docker.sock
