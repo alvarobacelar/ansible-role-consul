@@ -52,6 +52,13 @@
   notify:
     - habilitando consul
 
+- name: copia o arquivo compose file do registrator
+  template:
+    src: registrator-compose.j2
+    dest: '{{ path_consul }}/registrator.yml'
+    owner: '{{ sys_user }}'
+  when: docker_pkg
+
 - name: antes de iniciar
   debug:
     msg: "ANTES DE INICIAR O CONSUL, VERIFIQUE AS CONFIGURAÇÕES EM {{ path_consul_json }}"
