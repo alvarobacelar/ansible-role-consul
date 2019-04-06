@@ -28,3 +28,4 @@
   selinux:
     policy: targeted
     state: disabled
+  failed_when: false
