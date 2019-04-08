@@ -69,6 +69,7 @@
   with_items:
     - "{{ path_nginx }}{{ path_nginx_config }}/{{ name_upstream }}.conf"
     - "{{ path_nginx }}{{ path_nginx_config }}/{{ name_location }}.conf"
+  changed_when: false
 
 - name: alterando o datacenter of files
   replace:
