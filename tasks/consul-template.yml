@@ -61,6 +61,16 @@
     mode: 0750
   changed_when: false
 
+- name: garantindo que os arquivos location e upstream esteja criados
+  file:
+    path: "{{ item }}"
+    state: touch
+    mode: 0764
+  with_items:
+    - "{{ path_nginx }}{{ path_nginx_config }}/{{ name_upstream }}.conf"
+    - "{{ path_nginx }}{{ path_nginx_config }}/{{ name_location }}.conf"
+  changed_when: false
+
 - name: alterando o datacenter of files
   replace:
     path: '{{ item }}'
@@ -70,6 +80,12 @@
     - "{{ path_nginx }}{{ path_nginx_config }}/location.template"
     - "{{ path_nginx }}{{ path_nginx_config }}/upstream.template"
   changed_when: false
+
+- name: adicionando o arquivo de nginx modelo
+  template:
+    src: nginx.conf.j2
+    dest: "{{ path_nginx }}/nginx.conf_consul"
+    mode: 0764
 
 - name: adicionando o arquivo consul-template.service
   template:
