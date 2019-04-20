@@ -1,26 +1,26 @@
 ---
 
-- name: setandos as vars
+- name: setandos as vars para instalacao do consul-template
   set_fact:
     bin_consul: '{{ path_consul }}/consul-template'
     bin_consul_sys: '/usr/local/bin/consul-template'
     path_consul_json: '{{ path_consul }}/config/options'
 
-- name: criando diretorio para o consul
+- name: criando diretorio para o consul-template
   file:
     path: '{{ path_consul }}'
     state: directory
     owner: '{{ sys_user }}'
     mode: 0750
 
-- name: descompactando o pacote do consul
+- name: descompactando o pacote do consul-template
   unarchive:
     src: '{{ _link_consul_template }}'
     dest: '{{ path_consul }}/'
     owner: '{{ sys_user }}'
     remote_src: true
 
-- name: criando link simbolico do binario do consul
+- name: criando link simbolico do binario do consul-template
   file:
     src: '{{ bin_consul }}'
     dest: '{{ bin_consul_sys }}'
@@ -38,7 +38,7 @@
     - '{{ path_consul }}/config'
     - '{{ path_nginx }}{{ path_nginx_config }}'
 
-- name: adicionando o arquivo exemplo de configuração do consul
+- name: adicionando o arquivo exemplo de configuração do consul-template
   template:
     src: options-consul.j2
     dest: '{{ path_consul_json }}'
